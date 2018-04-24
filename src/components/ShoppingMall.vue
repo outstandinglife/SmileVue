@@ -14,15 +14,34 @@
                 </van-col>
             </van-row>
         </div>
+        <!--swipwer area-->
+        <div class='swiper-area'>
+            <swipe
+                :swipeList='swipeList'
+                :autoplay='autoplay'
+                :loop='loop'>
+            </swipe>
+        </div>
     </div>
 </template>
 
 <script>
+    import Swipe from 'base/swipe/swipe'
     export default {
         data() {
             return {
-                locationIcon: require('../assets/images/location.png')
+                locationIcon: require('../assets/images/location.png'),
+                autoplay: 4000,
+                loop: true,
+                swipeList: [
+                    {imgUrl: require('../assets/images/swipe1.jpg')},
+                    {imgUrl: require('../assets/images/swipe2.jpg')},
+                    {imgUrl: require('../assets/images/swipe3.jpg')}
+                ]
             }
+        },
+        components: {
+            Swipe
         }
     }
 </script>
@@ -66,4 +85,7 @@
                 width 100%
                 height 100%
                 font-size $font-size-s
+    .swiper-area
+        width 100%
+        height auto
 </style>

@@ -4,14 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
-import {Button, Row, Col} from 'vant'
+import {Button, Row, Col, Swipe, SwipeItem} from 'vant'
 import 'common/stylus/index.styl'
 
 Vue.config.productionTip = false
 
 fastclick.attach(document.body)
 
-Vue.use(Button).use(Row).use(Col)
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem)
 
 Vue.use(VueLazyload, {
     loading: require('./common/image/default.png')
