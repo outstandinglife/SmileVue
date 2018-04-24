@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>smilevue</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>smilevue</title>
+        <script type="text/javascript">
+            (function(designWidth) {
+                var win = window;
+                var doc = document;
+                var html = doc.getElementsByTagName('html')[0];
+                var timer;
+                var width = doc.documentElement.getBoundingClientRect().width;
+                if(width > 750) width = 750;
+                function refreshRem() {
+                    html.style.fontSize = width * 100 / designWidth + 'px';
+                }
+                refreshRem();
+                win.addEventListener('resize', function() {
+                    clearTimeout(timer);
+                    timer = setTimeout(refreshRem, 300);
+                }, false);
+                win.addEventListener('pageshow', function(e) {
+                    // 读取缓存重新计算
+                    if (e.persisted) {
+                        clearTimeout(timer);
+                        timer = setTimeout(refreshRem, 300);
+                    }
+                }, false);
+                // 页面载入完成状态
+                if (doc.readyState === 'complete') {
+                    doc.body.style.fontSize = "14px";
+                } else {
+                    // 页面载入中状态
+                    doc.addEventListener('DOMContentLoaded', function(e) {
+                        doc.body.style.fontSize = '14px';
+                    }, false);
+                }
+            })(750);
+        </script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
 </html>
