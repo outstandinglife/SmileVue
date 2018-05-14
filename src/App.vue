@@ -1,6 +1,8 @@
 <template>
     <div id='app'>
-        <router-view/>
+        <keep-alive exclude='welcome'>
+            <router-view></router-view>
+        </keep-alive>
     </div>
 </template>
 
@@ -9,5 +11,9 @@
 </script>
 
 <style>
-
+    #app {
+        width: 100%;
+        height: 100%;
+        background-color: #EDEFEE;
+    }
 </style>

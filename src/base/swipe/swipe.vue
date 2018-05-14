@@ -2,7 +2,7 @@
     <div class='swiper-area'>
         <van-swipe :autoplay='autoplay' :loop='loop'>
             <van-swipe-item v-for='(item, index) in swipeList' :key='index'>
-                <img v-lazy='item.imgUrl' @click='preview(index)'>
+                <img v-lazy='item.image' @click='preview(index)'/>
             </van-swipe-item>
         </van-swipe>
     </div>
@@ -27,14 +27,17 @@
         },
         data() {
             return {
-                ImagePreviewList: []
+                ImagePreviewList: []    
             }
         },
         methods: {
             preview(index) {
-                this.swipeList.map((item, index) => {
-                    this.ImagePreviewList.push(item.imgUrl);
-                });
+                return;
+                if(!this.ImagePreviewList.length) {
+                    this.swipeList.map((item, index) => {
+                        this.ImagePreviewList.push(item.image);
+                    });
+                }
                 ImagePreview(this.ImagePreviewList, index);
             }
         }
@@ -43,11 +46,11 @@
 
 <style lang='stylus' scoped rel='stylesheet/stylus'>
     .swiper-area
+        overflow hidden
         width 100%
-        height auto
+        height 0
         clear both
+        padding-bottom 40.03%
         img
-            display block
             width 100%
-            height 2.5rem
 </style>
